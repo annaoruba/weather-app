@@ -1,0 +1,46 @@
+<div class="search">
+  <input [(ngModel)]="searchText" class="search__input" [placeholder]="'Search city...'" type="text"
+    (keyup.enter)="searchCity()" />
+  <button class="search__button" (click)="searchCity()"><img src="../../assets/search-icon.png" /></button>
+</div>
+
+
+<ng-container *ngIf="!errorMessage && currentDayDate">
+
+  <div class="days">
+    <div class="days__day" [class.active]="currentDay === day.key" *ngFor="let day of weatherDataGrouped | keyvalue"
+      (click)="checkDay($event)">
+      {{day.key}}
+    </div>
+  </div>
+
+  <div class="weatherTable">
+    <table>
+      <tr>
+        <th></th>
+        <th>Temperature</th>
+        <th>Feels like</th>
+        <th>Pressure</th>
+        <th>Wind speed</th>
+        <th>Description</th>
+      </tr>
+      <tr *ngFor="let date of currentDayDate">
+        <td>{{date.hour}}</td>
+        <td>{{date.temp}} °C</td>
+        <td>{{date.files_temp}} °C</td>
+        <td>{{date.pressure}} hPa</td>
+        <td>{{date.wind_speed}} m/s</td>
+        <td>{{date.desc}}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="white-box">Average Pressure: <span class="bold">{{averagePressure}} hPa</span></div>
+  <div class="chart" [chart]="chart"></div>
+
+</ng-container>
+
+
+<div *ngIf="errorMessage" class="white-box-opacity">
+  {{errorMessage}}
+</div>

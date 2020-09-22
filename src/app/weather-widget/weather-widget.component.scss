@@ -1,0 +1,142 @@
+$radius: 4px;
+$opacity-white: rgba(255, 255, 255, 0.8);
+$breakpoint-sm: 450px;
+$breakpoint-md: 750px;
+$standard-space: 20px;
+$dark-gray: #515d52;
+$orange: #ca4827;
+
+@mixin margin-auto {
+    margin: { 
+        left: auto;
+        right: auto;
+    }
+}
+
+.white-box {
+    @include margin-auto;
+    width: 286px;
+    text-align: center;
+    background-color: white;
+    padding: $standard-space;
+    margin-bottom: $standard-space;
+    border: 1px solid $dark-gray;
+    max-width: 100%;
+}
+
+.white-box-opacity {
+    @include margin-auto;
+    width: 287px;
+    text-align: center;
+    background-color: RGBA(255,255,255,0.4);
+    padding: $standard-space;
+    max-width: 100%;
+}
+
+.days {
+    margin-bottom: $standard-space;
+    @media (min-width: $breakpoint-sm) {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    &__day {
+        padding: 10px;
+        border: 1px solid lightgray;
+        background-color: $opacity-white;
+        cursor: pointer;
+        @media (min-width: $breakpoint-sm) {
+            margin-right: 10px;
+        }
+        &:hover {
+            background-color: white;
+        }
+    }
+
+    .active {
+        background-color: $orange;
+        color: white;
+        transition: background-color .4s ease;
+    }
+
+}
+
+.search {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+    margin-top: 50px;
+
+    &__input {
+        height: 42px;
+        width: 244px;
+        padding: 0 16px;
+        background-color: $opacity-white;
+        color: #212121;
+        border: 0;
+        border-radius: $radius 0 0 $radius;
+        @media (max-width: $breakpoint-sm) {
+            width: 100%;
+        }
+    
+        &:focus {
+            outline: 0;
+            background-color: #FFF;
+        } 
+    }
+    &__button {
+        outline: 0;
+        background-color: $dark-gray;
+        height: 42px;
+        width: 42px;
+        border: 0;
+        transition: background-color .4s ease;
+        border-radius: 0 4px 4px 0;
+        cursor: pointer;
+    
+        &:hover {
+            background-color: rgba(0, 150, 136, 0.8);
+        }
+    }
+}
+
+
+.chart {
+    overflow: inherit !important;
+    @media (min-width: $breakpoint-md) {
+        width: 50vw;
+    }
+    @include margin-auto;
+}
+
+.weatherTable {
+    overflow-x: auto;
+
+    table {
+        margin-bottom: $standard-space;
+        @include margin-auto;
+
+        td, th {
+            padding: 8px;
+        }
+
+        tr {
+            &:nth-child(even) {
+                background-color: #f2f2f2; 
+            }
+            &:nth-child(odd) {
+                background-color: white;
+            }
+        }
+
+        th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: $dark-gray;
+            color: white;
+        }
+    }
+}
+
